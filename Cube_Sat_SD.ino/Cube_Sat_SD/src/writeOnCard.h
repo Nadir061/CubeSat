@@ -21,6 +21,12 @@
 #include <SPI.h>
 #include <SD.h>
 
+struct data{
+  int temp = -35;
+  int pres = 101; 
+  int alt = 300;
+};
+
 struct headValue{
   String tempVal = " Temp\t";
   String pressVal = "   Press\t";
@@ -35,10 +41,12 @@ struct headSensors{
 
 // Метод, формирующий заголовок для файла
     String getHeader();
+// Метод, формирующий заголовок для файла
+    String getStringFromData(struct data);
 // Метод, инициализирующий карту памяти 
     bool initCard();
 // Метод создаёт файл с заданным именем и записывает в него заголовок    
     bool createFile(String fileName);
 // Мтеод записывающий данные в файл
-    void writeFile(String fileName, String data);
+    void writeFile(String fileName);
 #endif

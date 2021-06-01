@@ -2,7 +2,6 @@
 #define SS 10
 #define INS 7
 String fileName = "TestCubeSat.txt";
-String dataString = "Hello world";
 int count = 0;
 void setup() {
   Serial.begin(9600);
@@ -23,7 +22,7 @@ void setup() {
 void loop() {
  
   if(count < 5){
-    writeFile(fileName, dataString);
+    writeFile(fileName);
     count++;
   }
 
