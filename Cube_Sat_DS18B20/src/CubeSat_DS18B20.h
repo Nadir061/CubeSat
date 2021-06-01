@@ -3,6 +3,12 @@
 
 #include <DS18B20.h>
 
+
+struct tempData{
+    int temp1;
+}
 // Инициализация
     DS18B20 init(int pinWire);
+// Получение температуры
+    struct tempData getTemp(DS18B20 ds);
 #endif
