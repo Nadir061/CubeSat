@@ -39,5 +39,6 @@ struct headSensors{
     bool initCard();
 // Метод создаёт файл с заданным именем и записывает в него заголовок    
     bool createFile(String fileName);
-// Метод, записывающий данные в файл
+// Мтеод записывающий данные в файл
+    void writeFile(String fileName, String data);
 #endif

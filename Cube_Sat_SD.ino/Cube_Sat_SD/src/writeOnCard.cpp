@@ -33,3 +33,12 @@ bool createFile(String fileName){
     
 
 }
+
+void writeFile(String fileName, String data){
+    File openFile = SD.open(fileName);
+    if (openFile)
+    {
+        openFile.println(data);
+        openFile.close();
+    }
+}
