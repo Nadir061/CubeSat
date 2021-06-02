@@ -5,10 +5,9 @@
 
 
 struct tempData{
-    int temp1;
-}
-// Инициализация
-    DS18B20 init(int pinWire);
+    float temp1;
+};
+
 // Получение температуры
     struct tempData getTemp(DS18B20 ds);
 #endif
