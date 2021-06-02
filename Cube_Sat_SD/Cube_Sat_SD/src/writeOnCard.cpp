@@ -18,37 +18,14 @@ String getStringFromData(){
     return outString;
 
 }
-bool initCard(){
-    
-    if (!SD.begin())
-    {
-        return false;
-    }else return true;
+bool initCard(int speed){
+    String header = getHeader();
+    Serial2.begin(speed);
+    Serial2.println(header);
+    return true;
 }
 
-bool createFile(String fileName){
-   
-    if (!SD.exists(fileName))
-    { 
-        String header = getHeader();
-        File newFile = SD.open(fileName, FILE_WRITE);
-        if (newFile)
-        {
-        newFile.println(header);
-        newFile.close();
-        return true;
-        }else false;
-    }else return true;
-    
-
-}
-
-void writeFile(String fileName){
+void writeFile(){
     String data = getStringFromData();
-    File openFile = SD.open(fileName);
-    if (openFile)
-    {
-        openFile.println(data);
-        openFile.close();
-    }
+    Serial2.println(data);
 }

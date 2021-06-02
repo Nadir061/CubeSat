@@ -14,12 +14,9 @@
 Для этого необходимо заменить или дополнить структуры
 
 */
-
+#include <SD.h>
 #ifndef __WRITEONCARD_H__
 #define __WRITEONCARD_H__
-
-#include <SPI.h>
-#include <SD.h>
 
 struct data{
   int temp = -35;
@@ -44,9 +41,7 @@ struct headSensors{
 // Метод, формирующий заголовок для файла
     String getStringFromData(struct data);
 // Метод, инициализирующий карту памяти 
-    bool initCard();
-// Метод создаёт файл с заданным именем и записывает в него заголовок    
-    bool createFile(String fileName);
+    bool initCard(int speed);
 // Мтеод записывающий данные в файл
-    void writeFile(String fileName);
+    void writeFile();
 #endif
