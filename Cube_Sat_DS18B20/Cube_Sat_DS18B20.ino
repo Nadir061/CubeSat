@@ -1,6 +1,6 @@
 #include "src\CubeSat_DS18B20.h"
 
-int wirePin = 54; // A0 Arduino Mega
+int wirePin = 52; // A0 Arduino Mega
 struct tempData temp;
 DS18B20 ds(wirePin);
 void setup() {
