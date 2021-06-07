@@ -2,6 +2,7 @@
 
 iarduino_GPS_NMEA gps;
 
+
 void initGPS(){
     Serial3.begin(UART_SPEED);
     gps.begin(Serial3);
