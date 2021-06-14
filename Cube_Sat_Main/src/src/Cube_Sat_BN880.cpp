@@ -13,7 +13,7 @@ gpsData readGPS(){
     struct gpsData dataGPS;
     gps.read();
     if(gps.errPos){
-        delay(2000);
+        //delay(2000);
         return dataGPS;
     }
     dataGPS.latitude = gps.latitude;
@@ -21,11 +21,12 @@ gpsData readGPS(){
     dataGPS.course = gps.course;
     dataGPS.altitude = gps.altitude;
     dataGPS.speed = gps.speed;
-    dataGPS.year = gps.year;
+    /*dataGPS.year = gps.year;
     dataGPS.month = gps.month;
     dataGPS.day = gps.day;
     dataGPS.hours = gps.hours;
     dataGPS.minutes = gps.minutes;
     dataGPS.seconds = gps.seconds;
+    */
     return dataGPS;
 }

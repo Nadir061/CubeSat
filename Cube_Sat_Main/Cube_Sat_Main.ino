@@ -1,7 +1,7 @@
 #include ".\src\cubemain.h"
-
+struct currentData currents;
 void setup(){
-  int a = getInt();
+  currents = getInt();
 }
 
 void loop(){

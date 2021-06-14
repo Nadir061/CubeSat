@@ -3,11 +3,13 @@
 
 #include <DS18B20.h>
 
+#define WIRE_PIN 10 // D10 (1Wire)
 
 struct tempData{
     float temp1;
+    float temp2;
 };
 
 // Получение температуры
-    struct tempData getTemp(DS18B20 ds);
+ tempData getTemp();
 #endif

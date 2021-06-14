@@ -1,12 +1,17 @@
 #include "..\include\CubeSat_DS18B20.h"
+DS18B20 ds(WIRE_PIN);
 
 
-
- struct tempData getTemp(DS18B20 ds){
+ struct tempData getTemp(){
      struct tempData temprature;
-     if (ds.selectNext())
+     float temps[2];
+     int i = 0;
+     while (ds.selectNext())
      {
-         temprature.temp1 = ds.getTempC();
+         temps[i] = ds.getTempC(); 
+         i++;
      }
-     
+    temprature.temp1 = temps[0];
+    temprature.temp2 = temps[1];
+    return temprature;
  }

@@ -1,6 +1,13 @@
 #include ".\cubemain.h"
 
-int getInt(){
-    int a = 10;
-    return a;
+void getInt(){
+
+}
+
+dataLoRa getLoRaData(){
+
+}
+
+dataSD getSdData(){
+
 }
