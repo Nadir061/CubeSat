@@ -2,7 +2,7 @@
 DS18B20 ds(WIRE_PIN);
 
 
- struct tempData getTemp(){
+  tempData getTemp(){
      struct tempData temprature;
      float temps[2];
      int i = 0;

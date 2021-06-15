@@ -10,7 +10,7 @@ void initGPS(){
 
 
 gpsData readGPS(){
-    struct gpsData dataGPS;
+    gpsData dataGPS;
     gps.read();
     if(gps.errPos){
         //delay(2000);

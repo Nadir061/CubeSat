@@ -1,7 +1,8 @@
 #include ".\cubemain.h"
 
 void getInt(){
-    
+    pinMode(11,OUTPUT);
+    initGPS();
 }
 
 double getSolarVoltage(){
@@ -9,12 +10,15 @@ double getSolarVoltage(){
 }
 
 
-gpsData getGpsData(){
-    
-}
 dataLoRa getLoRaData(){
     dataForLoRa dataLora;
-
+    dataLora.temps = getTemp();
+    if (dataLora.temps.temp1 < TEMP_THRESH)
+    {
+        analogWrite(TOGLE_PIN, 255);
+    }
+    dataLora.currents = getCurrents();
+    dataLora.GPS = readGPS();
     return dataLora;
 }
 
@@ -38,10 +42,10 @@ String getStrForSD(){
 
 
 
-void sendToLora(){
+void sendToLora(String strLora){
 
 }
 
-void sendToSD(){
+void sendToSD(String strSD){
 
 }
