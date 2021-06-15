@@ -8,8 +8,8 @@
 struct gpsData{
     float latitude = 0.0; // Широта +/- 90.0 
     float longitude = 0.0; // Долгота +/- 180;  Е-восточная "+", W - западная "-" 
-    uint16_t altitude = 0; // высота над уровнем моря +/-32767
-    uint8_t speed = 0; // Скорость 0-255 км/ч
+    int altitude = 0; // высота над уровнем моря +/-32767
+    int speed = 0; // Скорость 0-255 км/ч
     float course = 0.0; // +/- 180.0
     /*uint8_t year = 0;
     uint8_t month = 0;
