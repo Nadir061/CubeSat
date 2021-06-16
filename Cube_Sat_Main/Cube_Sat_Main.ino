@@ -1,9 +1,10 @@
 #include ".\src\cubemain.h"
 struct currentData currents;
 void setup(){
-  currents = getInt();
+  getInt();
 }
 
 void loop(){
-  
+  sendToLora();
+  delay(1000);
 }

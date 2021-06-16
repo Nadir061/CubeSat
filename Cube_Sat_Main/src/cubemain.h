@@ -24,11 +24,11 @@ struct dataForSD{
 void getInt();
 double getSolarVoltage();
 // Методы для формирования двух структур
-dataLoRa getLoRaData();
-dataSD getSdData();
+dataForLoRa getLoRaData();
+dataForSD getSdData();
 // Методы для формирования строк из двух структур
 String getStrForLoRa();
 String getStrForSD();
 // Методы для отправки данных на карту памяти и по радиоканалу
-void sendToLora(String strLora);
+void sendToLora();
 void sendToSD(String strSD);
