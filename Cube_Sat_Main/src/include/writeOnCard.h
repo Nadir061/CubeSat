@@ -18,30 +18,33 @@
 #ifndef __WRITEONCARD_H__
 #define __WRITEONCARD_H__
 
-struct data{
-  int temp = -35;
-  int pres = 101; 
-  int alt = 300;
-};
-
 struct headValue{
-  String tempVal = " Temp\t";
-  String pressVal = "   Press\t";
-  String altVal =   "   Alt\t\n";
+  String tempBat = "TempBat\t";
+  String temp = "Temp\t";
+  String currentBat = "CurrentBat\t";
+  String currentSol = "CurrentSol\t";
+  String gpsLatit = "GpsLatit\t";
+  String gpsLongit = "GpsLongit\t";
+  String gpsAltit = "GpsAltit\t";
+  String gpsSpeed = "GpsSpeed\t";
+  String gpsCourse = "GpsCourse\t";
+  String voltSol =   "VoltSol\t";
 };
 
 struct headSensors{
-  String tempSens =  "(DS18B20)\t";
-  String pressSens = "(MS5611)\t";
-  String altSens =   "(MS5611)\t\n";
+  String tempSens1 = "(DS18B20)\t";
+  String tempSens2 = "(DS18B20)\t";
+  String currentSens1 = "(ACS712)\t";
+  String currentSens2 = "(ACS712)\t";
+  String GPS = "(BN880)\t";
+  String voltSolSens = "ADC(A2)" 
 };
 
 // Метод, формирующий заголовок для файла
-    String getHeader();
-// Метод, формирующий заголовок для файла
-    String getStringFromData(struct data);
+    String getHeaderSens();
+    String getHeaderVal();
 // Метод, инициализирующий карту памяти 
     bool initCard(int speed);
 // Мтеод записывающий данные в файл
-    void writeFile();
+    void writeFile(String dataSD);
 #endif

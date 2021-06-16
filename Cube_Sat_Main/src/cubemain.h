@@ -16,7 +16,7 @@ struct dataForLoRa{
     struct gpsData GPS;
 };
 struct dataForSD{
-    struct dataForLoRa dataLoRa;
+    //struct dataForLoRa dataLoRa;
     double voltage_solar;
 };
 
@@ -31,4 +31,4 @@ String getStrForLoRa();
 String getStrForSD();
 // Методы для отправки данных на карту памяти и по радиоканалу
 void sendToLora();
-void sendToSD(String strSD);
+void sendToSD();

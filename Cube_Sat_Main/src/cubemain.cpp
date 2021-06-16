@@ -27,7 +27,7 @@ dataForLoRa getLoRaData(){
 
 dataForSD getSdData(){
     dataForSD dataSD;
-    dataSD.dataLoRa = getLoRaData();
+    //dataSD.dataLoRa = getLoRaData();
     dataSD.voltage_solar = getSolarVoltage(); // Записываем напряжение солнечной батареи
     return dataSD;
 }
@@ -44,13 +44,17 @@ String getStrForLoRa(){
     String latitude = String(dataLora.GPS.latitude, 5) + "\t";
     String longitude = String(dataLora.GPS.longitude, 5) + "\t";
     String speed = (String)dataLora.GPS.speed + "\t";
-    String course = (String)dataLora.GPS.course;
+    String course = (String)dataLora.GPS.course + "\t";
     String out = Temp1 + Temp2 + CurrentBAT + CurrentSOL + latitude + longitude + speed + course;
     return out;
 }
 
 String getStrForSD(){
-
+    dataForSD dataSD = getSdData();
+    String strLora = getStrForLoRa();
+    String strSD = (String)dataSD.voltage_solar + "\t";
+    String outStr = strLora + strSD;
+    return outStr;
 }
 
 

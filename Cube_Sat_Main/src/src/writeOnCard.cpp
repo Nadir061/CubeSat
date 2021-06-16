@@ -1,22 +1,17 @@
 #include "..\include\writeOnCard.h"
 
-struct data myData;
-struct headValue head;
+struct headValue headVal;
 struct headSensors headSens;
 
-String getHeader(){
-    String header;
-    header = head.tempVal + head.pressVal + head.altVal;
-    header += headSens.tempSens + headSens.pressSens + headSens.altSens;
-    return header;
+String getHeaderSens(){
+    String headerSens;
+    headerSens = headSens.tempSens1 + headSens.tempSens2 + headSens.currentSens1 + headSens.currentSens2 + headSens.GPS + headSens.voltSolSens;
+    return headerSens;
 }
 
-String getStringFromData(){
-    String outString = " " + String(myData.temp) + "\t";
-    outString +=       "    " + String(myData.pres) + "\t";
-    outString +=       "    " + String(myData.alt) + "\t";
-    return outString;
-
+String getHeaderVal(){
+    String headerVal;
+    headerVal = headVal.tempBat + 
 }
 bool initCard(int speed){
     String header = getHeader();
@@ -25,7 +20,6 @@ bool initCard(int speed){
     return true;
 }
 
-void writeFile(){
-    String data = getStringFromData();
-    Serial2.println(data);
+void writeFile(String dataSD){
+    Serial2.println(dataSD);
 }
