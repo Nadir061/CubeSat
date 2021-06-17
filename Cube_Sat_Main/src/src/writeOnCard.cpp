@@ -11,12 +11,14 @@ String getHeaderSens(){
 
 String getHeaderVal(){
     String headerVal;
-    headerVal = headVal.tempBat + 
+  headerVal = headVal.tempBat + headVal.temp + headVal.currentBat + headVal.currentSol +headVal.gpsLatit + headVal.gpsLongit +headVal.gpsAltit +headVal.gpsSpeed +headVal.gpsCourse +headVal.MS5611 +headVal.MPU6050 +headVal.voltSol;
 }
 bool initCard(int speed){
-    String header = getHeader();
+    String sens = getHeaderSens();
+    String val = getHeaderVal();
     Serial2.begin(speed);
-    Serial2.println(header);
+    Serial2.println(sens);
+    Serial2.println(val);
     return true;
 }
 

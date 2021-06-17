@@ -4,8 +4,10 @@
 #include <Wire.h>
 #include <MS5x.h>
 #include <MPU6050_tockn.h>
-#include <HMC5883L.h>
-struct dataGY86{
+
+#define ADDR_MS 0x77
+
+struct dataMS{
     double temp = 0.00;
     double pressure = 0.00;
     double pressSea = 0.00;
@@ -13,9 +15,31 @@ struct dataGY86{
     //double azimuth = 0.00;
 };
 
-void initGY86(int addr);
+struct dataMPU{
+  float accX;
+  float accY;
+  float accZ;
+  float gyroX;
+  float gyroY;
+  float gyroZ;
+  float angleAccX;
+  float angleAccY;
+  float angleGyroX;
+  float angleGyroY;
+  float angleGyroZ;
+  float angleX;
+  float angleY;
+  float angleZ;
+};
 
-dataGY86 getDataGY86();
+void initMS(int addrMS);
+void initMPU();
+//void initHMC();
+void initGY86();
+
+dataMS getDataMS(double press_sea);
+dataMPU getDataMPU();
+//dataHMC getDataHMC();
 
 
 #endif

@@ -11,12 +11,14 @@
 //#define REFERENCCE_VOLTAGE 2.50 // опорное напряжение аналоговых входов [В]
 
 struct dataForLoRa{
-    struct tempData temps;
-    struct currentData currents;
-    struct gpsData GPS;
+     tempData temps;
+     currentData currents;
+     gpsData GPS;
+     dataMS data_ms;
 };
 struct dataForSD{
     //struct dataForLoRa dataLoRa;
+    dataMPU data_mpu;
     double voltage_solar;
 };
 
@@ -24,11 +26,11 @@ struct dataForSD{
 void getInt();
 double getSolarVoltage();
 // Методы для формирования двух структур
-dataForLoRa getLoRaData();
+dataForLoRa getLoRaData(double press_sea);
 dataForSD getSdData();
 // Методы для формирования строк из двух структур
 String getStrForLoRa();
 String getStrForSD();
 // Методы для отправки данных на карту памяти и по радиоканалу
-void sendToLora();
-void sendToSD();
+void sendToLora(double press_sea);
+void sendToSD(double press_sea);

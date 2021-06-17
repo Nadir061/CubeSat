@@ -19,25 +19,27 @@
 #define __WRITEONCARD_H__
 
 struct headValue{
-  String tempBat = "TempBat\t";
-  String temp = "Temp\t";
-  String currentBat = "CurrentBat\t";
-  String currentSol = "CurrentSol\t";
-  String gpsLatit = "GpsLatit\t";
-  String gpsLongit = "GpsLongit\t";
-  String gpsAltit = "GpsAltit\t";
-  String gpsSpeed = "GpsSpeed\t";
-  String gpsCourse = "GpsCourse\t";
-  String voltSol =   "VoltSol\t";
+  String tempBat = "\tTempBat";
+  String temp = "\tTemp";
+  String currentBat = "\tCurrentBat";
+  String currentSol = "\tCurrentSol";
+  String gpsLatit = "\tGpsLatit";
+  String gpsLongit = "\tGpsLongit";
+  String gpsAltit = "\tGpsAltit";
+  String gpsSpeed = "\tGpsSpeed";
+  String gpsCourse = "\tGpsCourse";
+  String MS5611 = "\tMS5611";
+  String MPU6050 = "\tMPU6050";
+  String voltSol =   "\tVoltSol";
 };
 
 struct headSensors{
-  String tempSens1 = "(DS18B20)\t";
-  String tempSens2 = "(DS18B20)\t";
-  String currentSens1 = "(ACS712)\t";
-  String currentSens2 = "(ACS712)\t";
-  String GPS = "(BN880)\t";
-  String voltSolSens = "ADC(A2)" 
+  String tempSens1 = "\t(DS18B20)\t";
+  String tempSens2 = "\t(DS18B20)\t";
+  String currentSens1 = "\t(ACS712)\t";
+  String currentSens2 = "\t(ACS712)\t";
+  String GPS = "\t(BN880)\t";
+  String voltSolSens = "\tADC(A2)" ;
 };
 
 // Метод, формирующий заголовок для файла

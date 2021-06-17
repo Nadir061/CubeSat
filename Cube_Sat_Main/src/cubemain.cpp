@@ -2,6 +2,8 @@
 
 void getInt(){
     pinMode(11,OUTPUT);
+    bool card = initCard(9600);
+    initGY86();
     initLoRa();
     initGPS();
 }
@@ -11,7 +13,7 @@ double getSolarVoltage(){
 }
 
 
-dataForLoRa getLoRaData(){
+dataForLoRa getLoRaData(double press_sea){
     dataForLoRa dataLora;
     dataLora.temps = getTemp();
 
@@ -22,12 +24,13 @@ dataForLoRa getLoRaData(){
 
     dataLora.currents = getCurrents();
     dataLora.GPS = readGPS();
+    dataLora.data_ms = getDataMS(press_sea);
     return dataLora;
 }
 
 dataForSD getSdData(){
     dataForSD dataSD;
-    //dataSD.dataLoRa = getLoRaData();
+    dataSD.data_mpu = getDataMPU();
     dataSD.voltage_solar = getSolarVoltage(); // Записываем напряжение солнечной батареи
     return dataSD;
 }
@@ -35,35 +38,53 @@ dataForSD getSdData(){
 
 
 
-String getStrForLoRa(){
-    dataForLoRa dataLora = getLoRaData();
-    String Temp1 = (String)dataLora.temps.temp1 + "\t";
-    String Temp2 = (String)dataLora.temps.temp2 + "\t";
-    String CurrentBAT = (String)dataLora.currents.currentBat + "\t";
-    String CurrentSOL =  (String)dataLora.currents.currentSol + "\t";
-    String latitude = String(dataLora.GPS.latitude, 5) + "\t";
-    String longitude = String(dataLora.GPS.longitude, 5) + "\t";
-    String speed = (String)dataLora.GPS.speed + "\t";
-    String course = (String)dataLora.GPS.course + "\t";
-    String out = Temp1 + Temp2 + CurrentBAT + CurrentSOL + latitude + longitude + speed + course;
+String getStrForLoRa(double press_sea){
+    dataForLoRa dataLora = getLoRaData(press_sea);
+    String Temp1 = "\t" + (String)dataLora.temps.temp1;
+    String Temp2 = "\t" + (String)dataLora.temps.temp2;
+    String CurrentBAT = "\t" + (String)dataLora.currents.currentBat;
+    String CurrentSOL =  "\t" + (String)dataLora.currents.currentSol;
+    String latitude = "\t" + String(dataLora.GPS.latitude, 5);
+    String longitude = "\t" + String(dataLora.GPS.longitude, 5);
+    String altGps = "\t" + (String)dataLora.GPS.altitude;
+    String speed = "\t" + (String)dataLora.GPS.speed;
+    String course = "\t" + (String)dataLora.GPS.course;
+    String press = "\t" + (String)dataLora.data_ms.pressure;
+    String altBar = "\t" + (String)dataLora.data_ms.pressure;
+    String out = Temp1 + Temp2 + CurrentBAT + CurrentSOL + latitude + longitude + altGps + speed + course + press + altBar;
     return out;
 }
 
-String getStrForSD(){
+String getStrForSD(double press_sea){
     dataForSD dataSD = getSdData();
-    String strLora = getStrForLoRa();
-    String strSD = (String)dataSD.voltage_solar + "\t";
-    String outStr = strLora + strSD;
+    String strLora = getStrForLoRa(press_sea);
+    String  str_accX = "\t" + (String)dataSD.data_mpu.accX;
+    String  str_accY = "\t" + (String)dataSD.data_mpu.accY;
+    String  str_accZ = "\t" + (String)dataSD.data_mpu.accZ;
+    String  str_gyroX = "\t" + (String)dataSD.data_mpu.gyroX;
+    String  str_gyroY = "\t" + (String)dataSD.data_mpu.gyroY;
+    String  str_gyroZ = "\t" + (String)dataSD.data_mpu.gyroZ;
+    String  str_angleAccX = "\t" + (String)dataSD.data_mpu.angleAccX;
+    String  str_angleAccY = "\t" + (String)dataSD.data_mpu.angleAccY;
+    String  str_angleGyroX = "\t" + (String)dataSD.data_mpu.angleGyroX;
+    String  str_angleGyroY = "\t" + (String)dataSD.data_mpu.angleGyroY;
+    String  str_angleGyroZ = "\t" + (String)dataSD.data_mpu.angleGyroZ;
+    String  str_angleX = "\t" + (String)dataSD.data_mpu.angleX;
+    String  str_angleY = "\t" + (String)dataSD.data_mpu.angleY;
+    String  str_angleZ = "\t" + (String)dataSD.data_mpu.angleZ; 
+    String vSol = "\t" + (String)dataSD.voltage_solar;
+    String outStr = strLora +str_accX+str_accY+str_accZ+str_gyroX+str_gyroY+str_gyroZ+str_angleAccX+str_angleAccY+str_angleGyroX+str_angleGyroY+str_angleGyroZ+str_angleX+str_angleY+str_angleZ+vSol;
     return outStr;
 }
 
 
 
-void sendToLora(){
-    String outStr = getStrForLoRa();
+void sendToLora(double press_sea){
+    String outStr = getStrForLoRa(press_sea);
     writeDataLoRa(outStr);
 }
 
-void sendToSD(String strSD){
-
+void sendToSD(double press_sea){
+String strSD = getStrForSD(press_sea);
+    writeFile(strSD);
 }
