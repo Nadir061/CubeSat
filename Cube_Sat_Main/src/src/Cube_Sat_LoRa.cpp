@@ -3,9 +3,10 @@
 
 
 void initLoRa(){
-    Serial1.begin(UART_SPEED);
     pinMode(8, OUTPUT);
     pinMode(9, OUTPUT);
+    Serial1.begin(UART_SPEED);
+
     
 }
 
