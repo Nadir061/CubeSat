@@ -1,9 +1,14 @@
+#ifndef __CUBESATMAIN_H__
+#define __CUBESATMAIN_H__
+
+
 #include ".\include\writeOnCard.h"
 #include ".\include\Cube_Sat_LoRa.h"
 #include ".\include\Cube_Sat_BN880.h"
 #include ".\include\Cube_Sat_ACS712.h"
 #include ".\include\CubeSat_DS18B20.h"
 #include ".\include\Cube_Sat_GY86.h"
+#include ".\include\Cube_Sat_Rad.h"
 
 #define VOLTAGE_SOL_PIN  56  // A2 (Mega)
 #define TEMP_THRESH 15 // Граничное значение тепературы батареи 
@@ -19,6 +24,7 @@ struct dataForLoRa{
 struct dataForSD{
     //struct dataForLoRa dataLoRa;
     dataMPU data_mpu;
+    //dataRad data_rad;
     double voltage_solar;
 };
 
@@ -34,3 +40,6 @@ String getStrForSD();
 // Методы для отправки данных на карту памяти и по радиоканалу
 void sendToLora(double press_sea);
 void sendToSD(double press_sea);
+
+
+#endif

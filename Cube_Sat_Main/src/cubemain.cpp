@@ -5,6 +5,7 @@ void getInt(){
     bool card = initCard(9600);
     initGY86();
     initLoRa();
+   // initRad();
     initGPS();
 }
 
@@ -17,11 +18,11 @@ dataForLoRa getLoRaData(double press_sea){
     dataForLoRa dataLora;
     dataLora.temps = getTemp();
 
-    if (dataLora.temps.temp1 < TEMP_THRESH)
+    /*if (dataLora.temps.temp1 < TEMP_THRESH)
     {
         analogWrite(TOGLE_PIN, 255);
     }else analogWrite(TOGLE_PIN, 0);
-
+*/
     dataLora.currents = getCurrents();
     dataLora.GPS = readGPS();
     dataLora.data_ms = getDataMS(press_sea);
@@ -30,6 +31,7 @@ dataForLoRa getLoRaData(double press_sea){
 
 dataForSD getSdData(){
     dataForSD dataSD;
+    //dataSD.data_rad = getRadData();
     dataSD.data_mpu = getDataMPU();
     dataSD.voltage_solar = getSolarVoltage(); // Записываем напряжение солнечной батареи
     return dataSD;
@@ -44,14 +46,14 @@ String getStrForLoRa(double press_sea){
     String Temp2 = "\t" + (String)dataLora.temps.temp2;
     String CurrentBAT = "\t" + (String)dataLora.currents.currentBat;
     String CurrentSOL =  "\t" + (String)dataLora.currents.currentSol;
-    String latitude = "\t" + String(dataLora.GPS.latitude, 5);
-    String longitude = "\t" + String(dataLora.GPS.longitude, 5);
+    String Latitude = "\t" + String(dataLora.GPS.latitude, 5);
+    String Longitude = "\t" + String(dataLora.GPS.longitude, 5);
     String altGps = "\t" + (String)dataLora.GPS.altitude;
-    String speed = "\t" + (String)dataLora.GPS.speed;
-    String course = "\t" + (String)dataLora.GPS.course;
-    String press = "\t" + (String)dataLora.data_ms.pressure;
+    String Speed = "\t" + (String)dataLora.GPS.speed;
+    String Course = "\t" + (String)dataLora.GPS.course;
+    String Press = "\t" + (String)dataLora.data_ms.pressure;
     String altBar = "\t" + (String)dataLora.data_ms.pressure;
-    String out = Temp1 + Temp2 + CurrentBAT + CurrentSOL + latitude + longitude + altGps + speed + course + press + altBar;
+    String out = Temp1 + Temp2 + CurrentBAT + CurrentSOL + Latitude + Longitude + altGps + Speed + Course + Press + altBar;
     return out;
 }
 
